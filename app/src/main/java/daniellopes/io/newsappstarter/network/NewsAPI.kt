@@ -12,7 +12,7 @@ interface NewsAPI {
     // QUERY que são parametros
     @GET("/v2/top-headlines")
     suspend fun getBreakingNews(
-        @Query("counttry")
+        @Query("country")
         countryCode: String = "br",
         @Query("page")
         pageNumber: Int = 1,
