@@ -1,6 +1,5 @@
 package daniellopes.io.newsappstarter.adapter
 
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +7,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import daniellopes.io.newsappstarter.Model.Article
+import daniellopes.io.newsappstarter.Model.entity.Article
 import daniellopes.io.newsappstarter.R
 import kotlinx.android.synthetic.main.item_news.view.*
 

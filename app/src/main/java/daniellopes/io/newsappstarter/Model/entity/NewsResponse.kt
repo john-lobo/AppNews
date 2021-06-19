@@ -1,4 +1,4 @@
-package daniellopes.io.newsappstarter.Model
+package daniellopes.io.newsappstarter.Model.entity
 
 data class NewsResponse(
     val articles: MutableList<Article>,

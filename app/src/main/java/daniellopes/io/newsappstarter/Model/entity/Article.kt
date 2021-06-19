@@ -1,4 +1,4 @@
-package daniellopes.io.newsappstarter.Model
+package daniellopes.io.newsappstarter.Model.entity
 import java.io.Serializable
 
 data class Article(
