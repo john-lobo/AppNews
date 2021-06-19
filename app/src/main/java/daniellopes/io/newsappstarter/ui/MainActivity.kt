@@ -1,12 +1,16 @@
-package daniellopes.io.newsappstarter.activity
+package daniellopes.io.newsappstarter.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import daniellopes.io.newsappstarter.R
 
-class ArticleActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_article)
+        setContentView(R.layout.activity_main)
+
+
+
     }
 }

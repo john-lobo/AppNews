@@ -1,7 +1,7 @@
-package daniellopes.io.newsappstarter.activity.network
+package daniellopes.io.newsappstarter.network
 
-import daniellopes.io.newsappstarter.activity.Model.NewsResponse
-import daniellopes.io.newsappstarter.activity.utils.Constants.Companion.API_KEY
+import daniellopes.io.newsappstarter.Model.NewsResponse
+import daniellopes.io.newsappstarter.utils.Constants.Companion.API_KEY
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

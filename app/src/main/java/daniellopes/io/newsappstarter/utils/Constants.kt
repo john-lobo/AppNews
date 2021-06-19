@@ -1,4 +1,4 @@
-package daniellopes.io.newsappstarter.activity.utils
+package daniellopes.io.newsappstarter.utils
 
 class Constants {
     companion object{

@@ -1,6 +1,6 @@
-package daniellopes.io.newsappstarter.activity.network
+package daniellopes.io.newsappstarter.network
 
-import daniellopes.io.newsappstarter.activity.utils.Constants.Companion.BASE_URL
+import daniellopes.io.newsappstarter.utils.Constants.Companion.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
