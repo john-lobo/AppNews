@@ -3,6 +3,7 @@ package daniellopes.io.newsappstarter.presenter.news
 import daniellopes.io.newsappstarter.Model.data.NewsDataSource
 import daniellopes.io.newsappstarter.Model.entity.NewsResponse
 import daniellopes.io.newsappstarter.presenter.ViewHome
+import daniellopes.io.newsappstarter.presenter.search.SeachHome
 import javax.sql.DataSource
 
 class NewsPresenter(
@@ -10,18 +11,19 @@ class NewsPresenter(
     val dataSource: NewsDataSource): NewsHome.Presenter {
 
     override fun requestAll() {
-        TODO("Not yet implemented")
+        this.view.showProgressBar()
+        this.dataSource.getBreakingNews(this)
     }
 
     override fun onSuccess(newsResponse: NewsResponse) {
-        TODO("Not yet implemented")
+        this.view.showArticles(newsResponse.articles)
     }
 
     override fun onError(message: String) {
-        TODO("Not yet implemented")
+       this.view.showFailure(message)
     }
 
     override fun onComplete() {
-        TODO("Not yet implemented")
+       this.view.hideProgressBar()
     }
 }

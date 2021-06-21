@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import daniellopes.io.newsappstarter.Model.entity.Article
 import daniellopes.io.newsappstarter.R
 import kotlinx.android.synthetic.main.item_news.view.*
+import java.text.SimpleDateFormat
 
 class MainAdapter : RecyclerView.Adapter<MainAdapter.ArticleViewHolder>(){
 
@@ -28,12 +29,12 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ArticleViewHolder>(){
 
     }
     //TODO vou usar esse cara pra chamar a lista criada acima, em uma thread separada
-    val differ = AsyncListDiffer(this,differCallBack)
+    val differ = AsyncListDiffer(this, differCallBack)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder =
         ArticleViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_news, parent,false)
+                .inflate(R.layout.item_news, parent, false)
         )
 
     override fun getItemCount(): Int = differ.currentList.size
@@ -42,11 +43,17 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ArticleViewHolder>(){
         val article = differ.currentList[position]
 
         holder.itemView.apply {
-            Glide.with(this).load(article.url).into(ivArticleImage)
-            textViewTitle.text = article.title ?: article.source?.name
+            Glide.with(this).load(article.urlToImage).into(ivArticleImage)
+            textViewTitle.text = article.title
             tvSource.text = article.source?.name?: article.author
             tvDescription.text = article.description
-            tvPublishedAt.text = article.publishedAt
+            //Formata data para brasileiro
+            val oldFormat = SimpleDateFormat("yyyy-MM-dd")
+            val newFormat = SimpleDateFormat("dd/MM/yyyy")
+            val dataFormatada = newFormat.format(oldFormat.parse(article.publishedAt?.substring(0, 10)))
+            tvPublishedAt.text = dataFormatada
+
+
         }
 
         setOnClickListener {
@@ -58,10 +65,10 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ArticleViewHolder>(){
 
     private var onItemClickListener: ((Article) -> Unit)? = null
 
-    fun setOnClickListener(listenter: (Article) ->Unit){
+    fun setOnClickListener(listenter: (Article) -> Unit){
         onItemClickListener = listenter
     }
-    inner class ArticleViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+    inner class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
     }
 }
