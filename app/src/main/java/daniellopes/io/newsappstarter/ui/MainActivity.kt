@@ -30,7 +30,15 @@ class MainActivity : AbstractActivity() ,ViewHome.View{
         presenter = NewsPresenter(this, dataSource)
         presenter.requestAll()
         configRecycle()
+        getItemAdapter()
+    }
 
+    private fun getItemAdapter(){
+        mainAdapter.setOnClickListener {
+            val intent = Intent(this, ArticleActivity::class.java)
+            intent.putExtra("article", it)
+            startActivity(intent)
+        }
     }
 
     private fun configRecycle(){

@@ -56,7 +56,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ArticleViewHolder>(){
 
         }
 
-        setOnClickListener {
+        holder.itemView.setOnClickListener {
             onItemClickListener?.let {
                 it(article)
             }
