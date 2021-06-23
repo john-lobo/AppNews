@@ -19,4 +19,8 @@ class FavoritePresenter(
     fun getAll(){
         this.dataSource.getAllArticles(this)
     }
+
+    fun deleleArticle(article: Article){
+        this.dataSource.deleteArticle(article)
+    }
 }
