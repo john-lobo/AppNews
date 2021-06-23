@@ -1,13 +1,18 @@
 package daniellopes.io.newsappstarter.Model.data
 
+import android.content.Context
+import daniellopes.io.newsappstarter.Model.db.ArticleDatabase
+import daniellopes.io.newsappstarter.Model.entity.Article
 import daniellopes.io.newsappstarter.network.RetrofitInstance
+import daniellopes.io.newsappstarter.presenter.favorite.FavoriteHome
 import daniellopes.io.newsappstarter.presenter.news.NewsHome
 import daniellopes.io.newsappstarter.presenter.search.SeachHome
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
-class NewsDataSource {
+class NewsDataSource(context: Context) {
+
+    private val db = ArticleDatabase(context)
+    private val newsRepository = NewsRepository(db)
 
     fun getBreakingNews(callback: NewsHome.Presenter){
         GlobalScope.launch(Dispatchers.Main) {
@@ -38,4 +43,28 @@ class NewsDataSource {
           }
       }
   }
+
+    fun saveArticle(article: Article){
+        GlobalScope.launch(Dispatchers.Main) {
+            newsRepository.updateInsert(article)
+        }
+    }
+
+
+    fun getAllArticles(callback: FavoriteHome.Home){
+        CoroutineScope(Dispatchers.IO).launch {
+            withContext(Dispatchers.Main){
+                callback.showArticles(newsRepository.getAll())
+            }
+        }
+    }
+
+    fun deleteArticle(article: Article?){
+        GlobalScope.launch(Dispatchers.Main) {
+            article?.let { articleDeleted ->
+                newsRepository.delete(articleDeleted)
+            }
+        }
+    }
+
 }
