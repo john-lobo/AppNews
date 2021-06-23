@@ -10,4 +10,8 @@ interface ViewHome {
         fun showFailure(message:String)
         fun showArticles(artitles : List<Article>)
     }
+
+    interface Favorite{
+        fun showArticles(artitles: List<Article>)
+    }
 }
