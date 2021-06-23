@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import daniellopes.io.newsappstarter.Extensions.formataLimiteDeCarateres
 import daniellopes.io.newsappstarter.Model.entity.Article
 import daniellopes.io.newsappstarter.R
 import kotlinx.android.synthetic.main.item_news.view.*
@@ -46,7 +47,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ArticleViewHolder>(){
             Glide.with(this).load(article.urlToImage).into(ivArticleImage)
             textViewTitle.text = article.title
             tvSource.text = article.source?.name?: article.author
-            tvDescription.text = article.description
+            tvDescription.text = article.description?.formataLimiteDeCarateres(140)
             //Formata data para brasileiro
             val oldFormat = SimpleDateFormat("yyyy-MM-dd")
             val newFormat = SimpleDateFormat("dd/MM/yyyy")

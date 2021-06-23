@@ -1,5 +1,6 @@
 package daniellopes.io.newsappstarter.ui
 
+import android.content.Intent
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -22,6 +23,7 @@ class SearchActivity : AbstractActivity(), ViewHome.View{
         val dataSource = NewsDataSource(this)
         presenter = SearchPresenter(this,dataSource)
         configRecycle()
+        getItemAdapter()
         search()
     }
 
@@ -40,6 +42,15 @@ class SearchActivity : AbstractActivity(), ViewHome.View{
             }
         )
     }
+
+    private fun getItemAdapter(){
+        mainAdapter.setOnClickListener {
+            val intent = Intent(this, ArticleActivity::class.java)
+            intent.putExtra("article", it)
+            startActivity(intent)
+        }
+    }
+
 
     fun configRecycle(){
         with(rvSearchNewsID){
