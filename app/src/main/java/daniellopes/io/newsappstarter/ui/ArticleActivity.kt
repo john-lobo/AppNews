@@ -7,14 +7,15 @@ import com.google.android.material.snackbar.Snackbar
 import daniellopes.io.newsappstarter.Model.data.NewsDataSource
 import daniellopes.io.newsappstarter.Model.entity.Article
 import daniellopes.io.newsappstarter.R
+import daniellopes.io.newsappstarter.presenter.ViewHome
 import daniellopes.io.newsappstarter.presenter.favorite.FavoritePresenter
 import kotlinx.android.synthetic.main.activity_article.*
 
-class ArticleActivity : AbstractActivity() {
+class ArticleActivity : AbstractActivity(),ViewHome.Favorite {
     override fun getLayout(): Int = R.layout.activity_article
     private lateinit var article: Article
     private var dataSource = NewsDataSource(this)
-    private var presenter = FavoritePresenter(dataSource)
+    private var presenter = FavoritePresenter(this,dataSource)
 
     override fun onInject() {
         extrasItemArticle()
@@ -33,6 +34,10 @@ class ArticleActivity : AbstractActivity() {
 
     private fun extrasItemArticle(){
       article = intent.extras?.get("article") as Article
+    }
+
+    override fun showArticles(artitles: List<Article>) {
+
     }
 
 }

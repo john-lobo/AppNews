@@ -52,9 +52,11 @@ class NewsDataSource(context: Context) {
 
 
     fun getAllArticles(callback: FavoriteHome.Presenter){
+        var allArticles: List<Article>
         CoroutineScope(Dispatchers.IO).launch {
+            allArticles = newsRepository.getAll()
             withContext(Dispatchers.Main){
-                callback.onSucess(newsRepository.getAll())
+                callback.onSucess(allArticles)
             }
         }
     }
